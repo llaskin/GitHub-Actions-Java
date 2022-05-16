@@ -59,7 +59,11 @@ public class AppTest {
 		config.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
 
 		// create a new batch info instance and set it to the configuration
-		config.setBatch(new BatchInfo("Demo Batch - Selenium for Java - Ultrafast"));
+		BatchInfo myBatch = new BatchInfo("Browser combo batch");
+	        myBatch.setId(process.env.APPLITOOLS_BATCH_ID);
+	        myBatch.addProperty("RunID", "GithubActions" + url);
+	//        myBatch.addProperty("runner", "VG");
+        	sconf.setBatch(myBatch);
 
 		// Add browsers with different viewports
 		config.addBrowser(800, 600, BrowserType.CHROME);
